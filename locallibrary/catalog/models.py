@@ -14,6 +14,7 @@ class Genre(models.Model):
         return self.name
     def get_absolute_url(self):
         return reverse('genre-detail', args=[str(self.id)])
+    
     class Meta:
         constraints = [
             UniqueConstraint(
@@ -39,6 +40,11 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return reverse('book-detail', args=[str(self.id)])
+    def display_genre(self):
+    # """Create a string for the Genre. This is required to display genre in Admin."""
+        return ', '.join(genre.name for genre in self.genre.all()[:3])
+    display_genre.short_description = 'Genre'
+
 
 import uuid # for unique id
 
@@ -106,3 +112,4 @@ class Language(models.Model):
                 violation_error_message = "Language already exists (case insensitive match)"
             ),
         ]
+
