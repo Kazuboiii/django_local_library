@@ -7,7 +7,8 @@ from django.http import Http404
 class BookListView(generic.ListView):
     model = Book
     context_object_name = 'book_list'  # your own name for the list as a template variable
-    template_name = 'templates/book_list.html'  # Specify your own template name/location
+    template_name = 'book_list.html'  # Specify your own template name/location
+   
     
 class BookDetailView(generic.DetailView):
     model = Book   
