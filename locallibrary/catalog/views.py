@@ -11,7 +11,8 @@ class BookListView(generic.ListView):
    
     
 class BookDetailView(generic.DetailView):
-    model = Book   
+    model = Book 
+    template_name = 'book_details.html'  # Specify your own template name/location
 
 def book_detail_view(request, primary_key):
     try:
@@ -19,7 +20,7 @@ def book_detail_view(request, primary_key):
     except Book.DoesNotExist:
         raise Http404('Book does not exist')
 
-    return render (request, 'catalog/book_detail.html', context={'book': book})
+    return render (request, 'catalog/templates/book_details.html', context={'book': book})
 
 def index(request):
     """ View function for home page of site."""
